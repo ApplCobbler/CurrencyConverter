@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package models;
 import java.sql.*;
 
@@ -77,7 +77,7 @@ import java.sql.*;
 
 /**
  * @author richardwainwright
- *
+ *Greg testing
  *This section will be where Jik primarily works out of
  *
  *We will need the code for instantiating the DB. I have no problem with whatever implementation we go 
