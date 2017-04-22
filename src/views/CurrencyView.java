@@ -12,7 +12,7 @@ import javax.swing.*;
  * Build the window
  * Add the panels
  * Add the input fields
- * Add the two dropdowns:
+ * Add two dropdown menus:
  * 1. Initial currency
  * 2. Converted currency - this one will need to have an "ALL" option as well as the standard currencies. 
  * The ALL option should be the default selection when app loads.
