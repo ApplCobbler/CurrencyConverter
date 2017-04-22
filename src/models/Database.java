@@ -67,6 +67,4 @@ public class Database {
 	   }//end try
 	   System.out.println("Goodbye!");
 	}//end main
-
 }
->>>>>>> refs/remotes/origin/master
