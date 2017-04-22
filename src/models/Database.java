@@ -1,9 +1,10 @@
+
 package models;
 import java.sql.*;
 
 /**
  * @author richardwainwright
- *Greg testing
+ *
  *This section will be where Jik primarily works out of
  *
  *We will need the code for instantiating the DB. I have no problem with whatever implementation we go 
@@ -16,6 +17,11 @@ import java.sql.*;
  *Java Database boilerplate code provided from: 
  *https://www.tutorialspoint.com/jdbc/jdbc-create-database.htm
  *
+ *
+ *
+ *The Last try to sync things up.
+ *
+ *Comment 
  */
 public class Database {
 	
@@ -67,4 +73,5 @@ public class Database {
 	   }//end try
 	   System.out.println("Goodbye!");
 	}//end main
+
 }
