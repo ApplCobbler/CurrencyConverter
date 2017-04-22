@@ -22,6 +22,8 @@ import javax.swing.*;
  * a specific currency
  *
  *
+ *Test New Line Added
+ *
  */
 public class CurrencyView extends JFrame{
 	private static final long serialVersionUID = 1L;
