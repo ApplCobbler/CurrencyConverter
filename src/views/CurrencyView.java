@@ -20,6 +20,8 @@ import javax.swing.*;
  * Add the content panel where the results will display centered in the UI and below the above elements
  * This panel should be dynamic and will be different depending on if the user selects ALL or selects 
  * a specific currency
+ * 
+ * New Line For Project right here.
  *
  *
  *Test New Line Added
