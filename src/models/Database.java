@@ -17,6 +17,8 @@ import java.sql.*;
  *Java Database boilerplate code provided from: 
  *https://www.tutorialspoint.com/jdbc/jdbc-create-database.htm
  *
+ *
+ *We are trying to get this shit working
  *Comment 
  */
 public class Database {
