@@ -7,6 +7,8 @@ import java.sql.*;
  *
  *This section will be where Jik primarily works out of
  *
+ *This is a testing line. 
+ *
  *We will need the code for instantiating the DB. I have no problem with whatever implementation we go 
  *with, but I'll be working heavily with other classes that will interact with the DD.
  *
