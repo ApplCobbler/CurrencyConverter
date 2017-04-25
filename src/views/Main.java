@@ -1,5 +1,7 @@
 package views;
 
+import models.Parser;
+
 /**
  * CMSC 495 - Spring 2017 Professor Dao Group 2: Richard Wainwright, Dennie
  * Carr, Greg Armstrong, Jik Oh
@@ -19,6 +21,8 @@ public class Main {
 
 		CurrencyView foo = new CurrencyView();
 		foo.setVisible(true);
+		Parser parser = new Parser();
+		parser.showMeStream();
 
 	}
 

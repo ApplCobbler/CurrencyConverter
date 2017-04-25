@@ -8,9 +8,16 @@ import java.sql.*;
  *
  *         This section will be where Jik primarily works out of
  *
+<<<<<<< HEAD
  *         We will need the code for instantiating the DB. I have no problem
  *         with whatever implementation we go with, but I'll be working heavily
  *         with other classes that will interact with the DD.
+=======
+ *This is a testing line. 
+ *
+ *We will need the code for instantiating the DB. I have no problem with whatever implementation we go 
+ *with, but I'll be working heavily with other classes that will interact with the DD.
+>>>>>>> refs/remotes/origin/master
  *
  *         I have included some basic boilerplate code that I cannot confirm is
  *         any good but hopefully points us in the right direction. I also added
