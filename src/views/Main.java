@@ -1,40 +1,41 @@
 package views;
 
-import java.sql.SQLException;
 import models.Database;
-import models.Parser;
 
 /**
- * CMSC 495 - Spring 2017
- * Professor Dao
- * Group 2: Richard Wainwright, Dennie Carr, Greg Armstrong, Jik Oh
+ * CMSC 495 - Spring 2017 Professor Dao Group 2: Richard Wainwright, Dennie
+ * Carr, Greg Armstrong, Jik Oh
  *
- *Dennie's comment
+ * Dennie's comment
  */
 public class Main {
 
-	//New Main Line Code
+	// New Main Line Code
 
 	/**
 	 * Instantiate the app and open the main application window.
 	 */
-	public static void main(String[] args) throws SQLException, ClassNotFoundException {
+	public static void main(String[] args) throws Exception {
 
-		//Run this baby
+		// Run this baby
 
 		CurrencyView foo = new CurrencyView();
 		foo.setVisible(true);
-		Parser parser = new Parser();
-		parser.showMeStream();
-		// Connects to the DB
+
+		// Start database and check for/create tables
 		Database.connectDB();
-		// Drop the main table to test checkTable() and createTable()
-		Database.dropTable("main");
-		if (Database.checkTable() != true){
-			Database.createTable();
-		}
-		// Disconnect from and shut down the DB
+		// Update database for all currencies with a set date.
+		Database.updateDB(Database.today);
+		// Query rates for all currencies on base currency "USD" for today.
+		Database.queryAllRates("USD", Database.today);
+		// Prints out the names of currencies and rates
+		System.out.println(Database.getAllCurrencies());
+		System.out.println(Database.getAllRates());
+		// Get a rate for the specific base and target currencies for today
+		System.out.println(Database.getOneRate("USD", "KRW", Database.today));
+		// Disconnect and shutdown DB
 		Database.disconnectDB();
+
 	}
 
 }
