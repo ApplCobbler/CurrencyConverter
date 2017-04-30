@@ -15,7 +15,9 @@ public class Main {
 	/**
 	 * Instantiate the app and open the main application window.
 	 */
+<<<<<<< HEAD
 	public static void main(String[] args) throws Exception {
+>>>>>>> refs/remotes/origin/master
 
 		// Run this baby
 
