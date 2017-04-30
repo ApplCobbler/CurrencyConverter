@@ -15,9 +15,9 @@ public class Main {
 	/**
 	 * Instantiate the app and open the main application window.
 	 */
-<<<<<<< HEAD
+
 	public static void main(String[] args) throws Exception {
->>>>>>> refs/remotes/origin/master
+
 
 		// Run this baby
 
@@ -27,7 +27,7 @@ public class Main {
 		// Start database and check for/create tables
 		Database.connectDB();
 		// Update database for all currencies with a set date.
-		Database.updateDB(Database.today);
+		Database.updateDB(Database.today, 15);
 		// Query rates for all currencies on base currency "USD" for today.
 		Database.queryAllRates("USD", Database.today);
 		// Prints out the names of currencies and rates
@@ -35,6 +35,7 @@ public class Main {
 		System.out.println(Database.getAllRates());
 		// Get a rate for the specific base and target currencies for today
 		System.out.println(Database.getOneRate("USD", "KRW", Database.today));
+		System.out.println(Database.historicRates("USD", "EUR", 15));
 		// Disconnect and shutdown DB
 		Database.disconnectDB();
 
