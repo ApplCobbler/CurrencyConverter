@@ -48,24 +48,26 @@ public class CurrencyList {
 		{ "USD", "US Dollar","images/usa.png" },
 		{ "ZAR", "South African Rand","images/southafrica.png" },
 	};
-    //Format for object array will be: Row = {Initials, Description, Flag
+    //Format for object array will be: Row = {Initials, Description, Flag}
     
     
     
 	public CurrencyList(){
 		this.enteredAmount = 1;
+		
+	    keyArray = new String[currencyInfo.length];
+	    valueArray = new String[currencyInfo.length];
+	    infoArray = new String[currencyInfo.length];
 	    
 	    
 	    //Build the array for reference to names and descriptions
-	    keyArray = new String[currencyMap.size()];
-	    valueArray = new String[currencyMap.size()];
-	    infoArray = new String[currencyMap.size()];
-	    int index = 0;
-	    for (Map.Entry<String, String> mapEntry : currencyMap.entrySet()) {
-	        keyArray[index] = mapEntry.getKey();
-	        valueArray[index] = mapEntry.getValue();
-	        infoArray[index] = mapEntry.getKey() +" (" + mapEntry.getValue() + ")";
-	        index++;
+//	    keyArray = new String[currencyMap.size()];
+//	    valueArray = new String[currencyMap.size()];
+//	    infoArray = new String[currencyMap.size()];
+	    for (int i = 0; i < currencyInfo.length; i++) {
+	        keyArray[i] = currencyInfo[i][0];
+	        valueArray[i] = currencyInfo[i][1];
+	        infoArray[i] = currencyInfo[i][0] +" (" + currencyInfo[i][1] + ")";
 	    }
 	}
 	
@@ -96,14 +98,25 @@ public class CurrencyList {
 	}
 	
 	public String[] getCurrencyInfoList(){
+		//System.out.println(infoArray.length);
 		return infoArray;
+	}
+	
+	public String[] getCurrencyInfo(int input){
+		//System.out.println(infoArray.length);
+		return currencyInfo[input];
 	}
  
 	public String getCurrencyToDisplay(int input){
-		String value = valueArray[input];
-		String builder = keyArray[input] + " (" + value + ") "; 
+		String builder = keyArray[input] + " (" + valueArray[input] + ") "; 
 		return builder;
 	}
+	
+	
+	public String getCurrencyKey(int input){
+		return keyArray[input];
+	}
+	
 	
 	public String getLastSyncDate(){
         Date today = Database.today;

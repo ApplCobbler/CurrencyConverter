@@ -16,7 +16,7 @@ public class Main {
 
 		// Run this baby
 
-		CurrencyView3 foo = new CurrencyView3();
+		CurrencyView2 foo = new CurrencyView2();
 
 		// Start database and check for/create tables
 		Database.connectDB();
@@ -24,14 +24,14 @@ public class Main {
 		Database.updateDB(Database.today);
 		//System.out.println(Database.today);
 		// Query rates for all currencies on base currency "USD" for today.
-		Database.queryAllRates("USD", Database.today);
+	//	Database.queryAllRates("USD", Database.today);
 		// Prints out the names of currencies and rates
-		System.out.println(Database.getAllCurrencies());
+	//	System.out.println(Database.getAllCurrencies());
 	//	System.out.println(Database.getAllRates());
 		// Get a rate for the specific base and target currencies for today
 	//	System.out.println(Database.getOneRate("USD", "KRW", Database.today));
 		// Disconnect and shutdown DB
-		Database.disconnectDB();
+	//	Database.disconnectDB();
 
 	}
 

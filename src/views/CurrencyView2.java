@@ -8,8 +8,11 @@ import org.apache.derby.iapi.store.access.ColumnOrdering;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.sql.SQLException;
 
 import models.CurrencyList;
 import models.Database;
@@ -53,11 +56,11 @@ public class CurrencyView2 extends JFrame {
 		
 		JPanel topPanel = new JPanel(new BorderLayout());
 		topPanel.setBackground(Color.white);
-		topPanel.add(new TitlePanel1(), BorderLayout.NORTH);
-		topPanel.add(new ControlPanel1(), BorderLayout.SOUTH);
+		topPanel.add(new TitlePanel(), BorderLayout.NORTH);
+	//	topPanel.add(new ControlPanel(), BorderLayout.SOUTH);
 		
 		add(topPanel, BorderLayout.NORTH);
-		add(new CurrencyPanel1(), BorderLayout.CENTER);
+		add(new ContentPanel(), BorderLayout.CENTER);
 		// Add customizable panel
 
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -108,13 +111,15 @@ CurrencyList currencyList = new CurrencyList();
 	
 }
 
-class CurrencyPanel extends JPanel {
+class ContentPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	EmptyPanel1 defaultPanel = new EmptyPanel1();
+	EmptyPanel defaultPanel = new EmptyPanel();
+	ControlPanel controlPanel = new ControlPanel();
 	
-	public CurrencyPanel(){
-		this.add(defaultPanel);
+	public ContentPanel(){
+		this.add(controlPanel);
+		//this.add(defaultPanel);
 		//this.setBackground(Color.gray);
 	}
 	
@@ -138,21 +143,61 @@ class ControlPanel extends JPanel{
 	//This is where the main inputs and combo boxes are
 	
 	private  JButton enterButton,clearButton;
-	private  JComboBox<String> baseCurrencySelection, outputCurrencySelection;
+	JComboBox<String> baseCurrencySelection;
+	private  JComboBox<String> outputCurrencySelection;
 	private  JTextField inputAmount;
 	private JLabel comparisonText; //Will say "and compare with: "
 	private JLabel titleBuilder; //Will be used to show "[Input Currency]
+	private JLabel singleResults;
 	
+	private ImageIcon[] comboList;
+	
+	double inputdouble;
+	String input;
+	String output;
+	double results;
+	
+	private JTable resultsTable;
+	EmptyPanel defaultPanel;
 	
 	public ControlPanel(){
-		this.setLayout(new FlowLayout());
+		this.setLayout(new BorderLayout());
+		defaultPanel = new EmptyPanel();
+		
+	//	this.setLayout(new FlowLayout());
 		this.setBackground(Color.white);
 		this.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		inputAmount = new HintTextField1("Enter currency value");
-		inputAmount.setPreferredSize(new Dimension (250, 35));
+		inputAmount = new HintTextField("Enter currency value");
+		inputAmount.setPreferredSize(new Dimension (250, 25));
+		
+		
+//		JLabel label = new JLabel("hi");
+//		label.setIcon(new ImageIcon("images/australia.png"));
+//		
+//		comboList = new ImageIcon[currencyList.currencyInfo.length];
+//		for (int i = 0; i < currencyList.currencyInfo.length; i++){
+//			comboList[i] = new ImageIcon(currencyList.currencyInfo[i][2]);
+//            if (comboList[i] != null) {
+//                comboList[i].setDescription(currencyList.getCurrencyToDisplay(i));
+//            }
+//		}
+//		
+//		Object[] labels = new Object[currencyList.currencyInfo.length];
+//		labels[0] = label;
+//	
+//		baseCurrencySelection = new JComboBox<Object>(labels);
+		
 		baseCurrencySelection = new JComboBox<String>(currencyList.getCurrencyInfoList());
 		baseCurrencySelection.setPreferredSize(new Dimension (250, 50));
 		
+		input = "";
+		inputdouble = 0;
+		output = "";
+		results = 0;
+		
+		singleResults = new JLabel("<html><font size=5><p> Conversion Results: <br/>"
+				+ inputdouble + " in " + input + " to " + output + " = " + results +  "</p></font></html>");
+		singleResults.setVisible(false);
 		
 		
 		comparisonText = new JLabel(" and compare with: ");
@@ -161,12 +206,79 @@ class ControlPanel extends JPanel{
 	
 		enterButton = new JButton(new ImageIcon("images/submitIcon.png"));
 		enterButton.setBorderPainted(false);
+		enterButton.addActionListener( new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+                System.out.println("button pressed");
+                //Get the Selected Currency from the combo box
+                int indexSelected = baseCurrencySelection.getSelectedIndex();
+                currencyList.setSelected(currencyList.currencyInfo[indexSelected][0]);
+
+                //Get the entered amount from the input field
+
+                if (inputAmount.getText() != null){
+                     inputdouble = Double.parseDouble(inputAmount.getText());
+                     System.out.println("if found, amount = " + inputdouble);
+                     currencyList.setConversionAmount(inputdouble);
+                     input = baseCurrencySelection.getSelectedItem().toString();
+                     output = outputCurrencySelection.getSelectedItem().toString();
+                     
+                     System.out.println(currencyList.getCurrencyKey(baseCurrencySelection.getSelectedIndex()));
+                     System.out.println(currencyList.getCurrencyKey(outputCurrencySelection.getSelectedIndex()));
+                   
+                     try {
+						Database.connectDB();
+                    	 
+						results = Database.getOneRate(currencyList.getCurrencyKey(baseCurrencySelection.getSelectedIndex()), 
+								 currencyList.getCurrencyKey(outputCurrencySelection.getSelectedIndex()), Database.today) * inputdouble;
+						//Database.disconnectDB();
+						
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+                     
+                     defaultPanel.setVisible(false);
+                     
+                     singleResults.setText("<html><font size=5><p> Conversion Results: <br/>"
+				+ inputdouble + " " + input + " to " + output + ": " + results +  "</p></font></html>");
+                     
+                     
+                     singleResults.repaint();
+                     singleResults.setVisible(true);
+                    
+
+                }else{
+                     System.out.println("Invalid entry");
+                     singleResults.setVisible(false);
+                }
+
+
+           }
+				
+			
+       });
 		
-		this.add(inputAmount);
-		this.add(baseCurrencySelection);
-		this.add(comparisonText);
-		this.add(outputCurrencySelection);
-		this.add(enterButton);
+		
+		
+		JPanel controlPanel = new JPanel(new FlowLayout());
+		controlPanel.add(inputAmount);
+		controlPanel.add(baseCurrencySelection);
+		controlPanel.add(comparisonText);
+		controlPanel.add(outputCurrencySelection);
+		controlPanel.add(enterButton);
+		
+		
+//		this.add(inputAmount);
+//		this.add(baseCurrencySelection);
+//		this.add(comparisonText);
+//		this.add(outputCurrencySelection);
+//		this.add(enterButton);
+		
+		this.add(controlPanel, BorderLayout.NORTH);
+		this.add(singleResults);
+		this.add(defaultPanel, BorderLayout.WEST);
+		
+		
 	}
 	
 }
@@ -186,9 +298,9 @@ class EmptyPanel extends JPanel{
 		this.setLayout(new BorderLayout());
 		this.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
 		this.setBackground(Color.white);	
-		helpText = new JLabel("<html><font size=6><p> To get started:<br/>"
-				+ "1. Select a currency<br/>"
-				+ "2. Enter an initial value (ex: 125.50) <br/>"
+		helpText = new JLabel("<html><font size=5><p> To get started:<br/>"
+				+ "1. Enter a currency value (ex: 125.50)<br/>"
+				+ "2. Enter the base currency type (ex. USD) <br/>"
 				+ "3. Select a currency to compare with, <br/>"
 				+ "or select ALL to compare with all supported currencies</p></font></html>");
 		
@@ -244,3 +356,4 @@ class HintTextField extends JTextField implements FocusListener {
 	    return showingHint ? "" : super.getText();
 	  }
 	}
+
