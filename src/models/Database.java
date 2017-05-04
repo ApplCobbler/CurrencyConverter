@@ -1,15 +1,14 @@
 package models;
 
-
+<<<<<<< HEAD
+=======
 import java.io.*;
-
+>>>>>>> refs/remotes/origin/master
 import java.sql.*;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import org.json.JSONObject;
 //import org.json.simple.JSONObject;
 //import org.json.simple.parser.JSONParser;
@@ -45,7 +44,7 @@ import org.json.JSONObject;
  *
  *         Comment
  */
-/*public class Database {
+public class Database {
 
 	// JDBC driver name and database URL
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -315,27 +314,7 @@ public class Database {
 		}
 	}
 
-	//Method to subtract days 
-	public static Date subtractDays(Date sdate, int days) {
-		GregorianCalendar cal = new GregorianCalendar();
-		cal.setTime(sdate);
-		cal.add(Calendar.DATE, -days);
-		return cal.getTime();
-		
-	}
 	
-	// Update rates from the web for the last x days
-	public static void updateDB(Date udate, int x) throws Exception {
-		try {
-			for (int i = 0; i < x; i++) {
-				Date newDate = subtractDays(udate, i);
-				updateDB(newDate);				
-			}
-		}
-		catch (Exception e){
-			System.out.println(e);
-		}
-	}
 	
 	// 5. Query
 	// Methods to query DB and return data
@@ -368,16 +347,6 @@ public class Database {
 			System.out.println(e);
 			conn.commit();
 		}
-	}
-	
-	// Query rates for last x days of base currency against the target currency
-	public static List<Double> historicRates(String hbase, String tbase, int x) throws Exception {
-		r_query.clear();
-		for (int i = 0; i < x; i++){
-			Date newDate = subtractDays(today, i);
-			r_query.add(getOneRate(hbase, tbase, newDate));
-		}
-		return r_query;
 	}
 	
 	// Return a String list of currencies for one base currency (used with
@@ -422,7 +391,7 @@ public class Database {
 			for (int i = 0; i < 32; i++) {
 
 				String dropTB = ("drop table " + list.get(i));
-//>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/master
 
 				stmt = conn.createStatement();
 				stmt.execute(dropTB);
