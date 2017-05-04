@@ -2,12 +2,11 @@ package views;
 
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.Border;
-
 import org.apache.derby.iapi.store.access.ColumnOrdering;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -51,6 +50,8 @@ public class CurrencyView2 extends JFrame {
 		super("Currency Converter (ver 1.0)");
 		setSize(WIDTH, HEIGHT);
 		
+		
+		
 		setLayout(new GridLayout(3,1));
 		this.setLayout(new BorderLayout());
 		
@@ -61,12 +62,35 @@ public class CurrencyView2 extends JFrame {
 		
 		add(topPanel, BorderLayout.NORTH);
 		add(new ContentPanel(), BorderLayout.CENTER);
-		// Add customizable panel
+		
+		WindowListener exitListener = new WindowAdapter() {
 
-		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		this.setVisible (true);
+		    @Override
+		    public void windowClosing(WindowEvent e) {
+		        int confirm = JOptionPane.showOptionDialog(
+		             null, "Are You Sure to Close Application?", 
+		             "Exit Confirmation", JOptionPane.YES_NO_OPTION, 
+		             JOptionPane.QUESTION_MESSAGE, null, null, null);
+		        if (confirm == 0) {
+		        	try {
+						Database.disconnectDB();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+		           System.exit(0);
+		        }
+		    }
+		};
+		this.addWindowListener(exitListener);
 	}
+
+
 }
+
+
+
+
 
 
 class TitlePanel extends JPanel{
@@ -227,7 +251,7 @@ class ControlPanel extends JPanel{
                      System.out.println(currencyList.getCurrencyKey(outputCurrencySelection.getSelectedIndex()));
                    
                      try {
-						Database.connectDB();
+						//Database.connectDB();
                     	 
 						results = Database.getOneRate(currencyList.getCurrencyKey(baseCurrencySelection.getSelectedIndex()), 
 								 currencyList.getCurrencyKey(outputCurrencySelection.getSelectedIndex()), Database.today) * inputdouble;

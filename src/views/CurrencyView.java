@@ -1,18 +1,21 @@
 package views;
+
 import java.awt.*;
 import java.awt.event.*; 
 import javax.swing.*;
+
 
 import models.CurrencyList;
 
 import java.io.*;
 import java.util.*;
 
+
 /**
  * @author Group 2
  * 
- * This class is the main app window
- * This section will primarily be where Greg works out of.
+ *         This class is the main app window This section will primarily be
+ *         where Greg works out of.
  * 
  * Build the window
  * Add the panels
@@ -25,13 +28,34 @@ import java.util.*;
  * Add the content panel where the results will display centered in the UI and below the above elements
  * This panel should be dynamic and will be different depending on if the user selects ALL or selects 
  * a specific currency
- * 
- * New Line For Project right here.
- *
- *
- *Test New Line Added
+=======
+ *         Build the window Add the panels Add the input fields Add two dropdown
+ *         menus: 1. Initial currency 2. Converted currency - this one will need
+ *         to have an "ALL" option as well as the standard currencies. The ALL
+ *         option should be the default selection when app loads. Add the submit
+ *         button Add the content panel where the results will display centered
+ *         in the UI and below the above elements This panel should be dynamic
+ *         and will be different depending on if the user selects ALL or selects
+ *         a specific currency
  *
  */
+
+public class CurrencyView extends JFrame {
+	private static final long serialVersionUID = 1L;
+
+	// Set the size of the window
+	static final int WIDTH = 600, HEIGHT = 600;
+
+	// Constructor
+	public CurrencyView() {
+		super("Currency Converter (ver 1.0)");
+		setSize(WIDTH, HEIGHT);
+
+		// Add customizable panel
+		add(new CurrencyPanel());
+
+		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+	}
 
 public class CurrencyView extends JApplet implements ActionListener{
 	
@@ -201,4 +225,15 @@ public void actionPerformed(ActionEvent ae){
         tf1.setText("0000");
         tf2.setText("0000");}    
    }
+
+}
+
+class CurrencyPanel extends JPanel {
+	private static final long serialVersionUID = 1L;
+
+	// Create main views, lay them out accordingly
+	// Add in all buttons within this panel
+
+
+}
 }

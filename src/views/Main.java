@@ -9,19 +9,32 @@ import models.Database;
  * Dennie's comment
  */
 public class Main {
+
+
+	// New Main Line Code
+
+
 	/**
 	 * Instantiate the app and open the main application window.
 	 */
+
 	public static void main(String[] args) throws Exception {
 
 		// Run this baby
 
 		CurrencyView2 foo = new CurrencyView2();
+		
+		
+		Database.connectDB();	
+		Database.updateDB(Database.today, 15);
+		
+		//foo.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		foo.setVisible (true);
 
 		// Start database and check for/create tables
-		Database.connectDB();
+	
 		// Update database for all currencies with a set date.
-		Database.updateDB(Database.today);
+	
 		//System.out.println(Database.today);
 		// Query rates for all currencies on base currency "USD" for today.
 	//	Database.queryAllRates("USD", Database.today);
@@ -33,6 +46,31 @@ public class Main {
 		// Disconnect and shutdown DB
 	//	Database.disconnectDB();
 
-	}
 
+//	public static void main(String[] args) throws Exception {
+//
+//
+//		// Run this baby
+//
+//		CurrencyView foo = new CurrencyView();
+//		foo.setVisible(true);
+//
+//		// Start database and check for/create tables
+//		Database.connectDB();
+//		// Update database for all currencies with a set date.
+//		Database.updateDB(Database.today, 15);
+//		// Query rates for all currencies on base currency "USD" for today.
+//		Database.queryAllRates("USD", Database.today);
+//		// Prints out the names of currencies and rates
+//		System.out.println(Database.getAllCurrencies());
+//		System.out.println(Database.getAllRates());
+//		// Get a rate for the specific base and target currencies for today
+//		System.out.println(Database.getOneRate("USD", "KRW", Database.today));
+//		System.out.println(Database.historicRates("USD", "EUR", 15));
+//		// Disconnect and shutdown DB
+//		Database.disconnectDB();
+//
+//	}
+
+}
 }
