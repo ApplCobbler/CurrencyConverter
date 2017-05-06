@@ -4,7 +4,6 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
-import java.util.Date;
 import java.util.List;
 import java.math.*;
 
@@ -76,7 +75,6 @@ public class CurrencyView extends JFrame {
         	        	   try {
 							Database.disconnectDB();
 						} catch (SQLException e1) {
-							System.out.println("Error trying to shutdown DB on close.");
 							e1.printStackTrace();
 						}
         	        	
@@ -207,14 +205,11 @@ class ControlPanel extends JPanel{
                      
               if(inputParsed.equals(outputParsed) == false){
               
-                if (inputAmount.getText().isEmpty() == false){
-                	
+                if (inputAmount.getText().isEmpty() == false){     	
                      inputdouble = Double.parseDouble(inputAmount.getText());
-                     System.out.println("if found, amount = " + inputdouble);
                      currencyList.setConversionAmount(inputdouble);
 
                      try {
-                              //Database.connectDB();
                               addResultsDisplay();
                               addTable(); 
 
@@ -326,15 +321,14 @@ class HistoryTableModel extends AbstractTableModel{
     	 try {
 			Database.updateDBWithHistory(inputString, days);
 		} catch (Exception e1) {
-			System.out.println("failed to update history");
+
 			e1.printStackTrace();
 			
 		}
     	 
     	 try {
-        	 System.out.println("Input: " + inputString + ", Output: "+ outputString + ", Days: "+ days);
 			returnedRates = Database.historicRates(inputString, outputString, days);
-			System.out.println(returnedRates);
+		
 		} catch (Exception e) {
 			
 			e.printStackTrace();
