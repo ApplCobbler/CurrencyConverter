@@ -2,21 +2,27 @@ package views;
 
 import models.Database;
 
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
+
 /**
  * CMSC 495 - Spring 2017 Professor Dao Group 2: Richard Wainwright, Dennie
  * Carr, Greg Armstrong, Jik Oh
  *
  * Dennie's comment
  */
-public class Main {
+public class Main extends IC2A{
 
 	// New Main Line Code
 
 	/**
 	 * Instantiate the app and open the main application window.
+	 * @param <IC2A>
 	 */
-	public static void main(String[] args) throws Exception {
+	public static <IC2A> void main(String[] args) throws Exception {
 
+		IC2A Converter = new IC2A();
+		Converter.setVisible(true);	
 
 		// Run this baby
 

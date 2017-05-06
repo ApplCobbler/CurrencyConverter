@@ -184,8 +184,20 @@ public class IC2A extends javax.swing.JFrame {
         );
 
         jButton5.setText("Cancel");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	jButton5.ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("OK");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	jButton6.ActionPerformed(evt);
+            }
+        });
+        
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -226,6 +238,10 @@ public class IC2A extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void jButton5.ActionPerformed(java.awt.event.ActionEvent evt) {
+        System.exit(0);// TODO add your handling code here:
+     }
     
     /**
      * @param args the command line arguments
@@ -283,5 +299,4 @@ public class IC2A extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JComboBox<String> nativeCurrency;
     // End of variables declaration//GEN-END:variables
-    
 }

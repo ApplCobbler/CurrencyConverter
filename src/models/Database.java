@@ -1,9 +1,8 @@
 package models;
 
-<<<<<<< HEAD
-=======
+
 import java.io.*;
->>>>>>> refs/remotes/origin/master
+
 import java.sql.*;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -94,9 +93,9 @@ public class Database {
 		} // end try
 		System.out.println("Goodbye!");
 	}// end main
-=======
- * @@Comment from JIK If you want to test this class, you have to copy Derby.jar
- *           to your library and set classpath. If you can improve the codes
+
+ /* @@Comment from JIK If you want to test this class, you have to copy Derby.jar
+ *           to your library and set class path. If you can improve the codes
  *           below, please feel free to correct and inform me.
  *
  */
@@ -391,7 +390,7 @@ public class Database {
 			for (int i = 0; i < 32; i++) {
 
 				String dropTB = ("drop table " + list.get(i));
->>>>>>> refs/remotes/origin/master
+
 
 				stmt = conn.createStatement();
 				stmt.execute(dropTB);
@@ -402,4 +401,4 @@ public class Database {
 			System.out.println(e);
 		}
 	}
-}
+}}
