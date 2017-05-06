@@ -109,13 +109,13 @@ CurrencyList currencyList = new CurrencyList();
      this.setBorder(BorderFactory.createEmptyBorder(10,0,10,0));
 
      //set up first Panel for displaying on left
-     titleIcon = new JLabel(new ImageIcon(new ImageIcon(Main.class.getResource("images/CC_Logo.jpg")).getImage().getScaledInstance(100, 90, Image.SCALE_DEFAULT)));
+     titleIcon = new JLabel(new ImageIcon(new ImageIcon(TitlePanel.class.getResource("/CC_Logo.jpg")).getImage().getScaledInstance(100, 90, Image.SCALE_DEFAULT)));
      title = new JLabel("<html><font size=8>Currency Converter</font></html>");
      titleFormat.add(titleIcon);
      titleFormat.add(title);
      titleFormat.setBackground(Color.white);
 
-     syncIcon = new JLabel(new ImageIcon(Main.class.getResource("images/syncIcon.png")));
+     syncIcon = new JLabel(new ImageIcon(TitlePanel.class.getResource("/syncIcon.png")));
      syncLabel = new JLabel("<html><font size=3>Last Synced: " + CurrencyList.getLastSyncDate(Database.today) + "</font></html> ");
      syncFormat.add(syncIcon);
      syncFormat.add(syncLabel);
@@ -195,7 +195,7 @@ class ControlPanel extends JPanel{
 
 
 
-          enterButton = new JButton(new ImageIcon(Main.class.getResource("images/submitIcon.png")));
+          enterButton = new JButton(new ImageIcon(CurrencyView.class.getResource("/submitIcon.png")));
           enterButton.setBorderPainted(false);
           enterButton.addActionListener( new ActionListener(){
                @Override
@@ -288,10 +288,10 @@ class ControlPanel extends JPanel{
         outputCountryFlagString = currencyList.getSelectedFlag(outputCurrencySelection.getSelectedIndex());
        
         JLabel inputAmountDisplay = new JLabel("<html><font size=8><p>" + inputdouble + "</p></font></html>");
-        JLabel inputCountryFlag = new JLabel(new ImageIcon(Main.class.getResource(inputCountryFlagString)));
+        JLabel inputCountryFlag = new JLabel(new ImageIcon(CurrencyView.class.getResource(inputCountryFlagString)));
         JLabel inputBaseDisplay = new JLabel("<html><font size=8><p>" + currencyList.getCurrencyKey(baseCurrencySelection.getSelectedIndex())+ "</p></font></html>");
         JLabel toDisplay = new JLabel("<html><font size=8><p>" + " to " + "</p></font></html>");
-        JLabel outputCountryFlag = new JLabel(new ImageIcon(Main.class.getResource(outputCountryFlagString)));
+        JLabel outputCountryFlag = new JLabel(new ImageIcon(CurrencyView.class.getResource(outputCountryFlagString)));
         JLabel outputBaseDisplay = new JLabel("<html><font size=8><p>" + currencyList.getCurrencyKey(outputCurrencySelection.getSelectedIndex()) + "</p></font></html>");
       
       
@@ -477,7 +477,7 @@ class EmptyPanel extends JPanel{
                     + "or select ALL to compare with all supported currencies</p></font></html>");
 
           helpIconPanel.setBackground(Color.white);
-          helpIconPanel.add(new JLabel(new ImageIcon(Main.class.getResource("images/helpIcon.png"))), BorderLayout.NORTH);
+          helpIconPanel.add(new JLabel(new ImageIcon(EmptyPanel.class.getResource("/helpIcon.png"))), BorderLayout.NORTH);
 
           helpTextPanel.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
           helpTextPanel.setBackground(Color.white);
