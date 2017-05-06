@@ -2,7 +2,6 @@ package models;
 
 
 import java.io.*;
-import java.math.BigDecimal;
 import java.sql.*;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -85,7 +84,7 @@ public class Database {
 				Database.createTable();
 			}
 		} catch (Exception e) {
-			System.out.println("Connection cannot be made: " + e);
+			//System.out.println("Connection cannot be made: " + e);
 		}
 	}
 
@@ -104,10 +103,10 @@ public class Database {
 			if (conn != null) {
 				conn.close();
 			}
-			System.out.println("Database disconnected.");
+			//System.out.println("Database disconnected.");
 			DriverManager.getConnection(SD_URL);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
 		}
 	}
 
@@ -119,12 +118,12 @@ public class Database {
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("select * from USD");
-			System.out.println("Tables already exists.");
+			//System.out.println("Tables already exists.");
 			conn.commit();
 			return true;
 		} // If there is no MAIN table, returns false
 		catch (SQLException ex) {
-			System.out.println("Table doesn't exist. Creating tables...");
+			//System.out.println("Table doesn't exist. Creating tables...");
 			return false;
 		}
 	}
@@ -151,14 +150,12 @@ public class Database {
 				table.append(")");
 				// Change to a string
 				tableSQL = table.toString();
-				System.out.println(tableSQL);
 				stmt.execute(tableSQL);
-				System.out.println("Table " + list.get(i) + " was created.");
 				table.delete(0, table.length());
 			}
 			conn.commit();
 		} catch (Exception e) {
-			System.out.println(e);
+			//System.out.println(e);
 		}
 	}
 
@@ -238,7 +235,7 @@ public class Database {
 		
 		conn.commit();
 		}catch (Exception e) {
-		System.out.println("Data for " + date + " already exist.");
+	//	System.out.println("Data for " + date + " already exist.");
 		conn.commit();
 	}
 
@@ -255,7 +252,7 @@ public class Database {
 				pstmt = conn
 					.prepareStatement("insert into " + hbase + " " + currency_list + " values" + rates_list);
 				pstmt.execute();
-				System.out.println("Updated table " + hbase + " from the web on " + date + ".");
+				//System.out.println("Updated table " + hbase + " from the web on " + date + ".");
 		
 		conn.commit();
 		}catch (Exception e) {
@@ -367,7 +364,7 @@ public class Database {
 			conn.commit();
 		} catch (Exception e) {
 
-			System.out.println(e);
+			//System.out.println(e);
 			conn.commit();
 		}
 		
@@ -386,11 +383,11 @@ public class Database {
 
 				stmt = conn.createStatement();
 				stmt.execute(dropTB);
-				System.out.println("Table " + list.get(i) + " has been dropped.");
+			//	System.out.println("Table " + list.get(i) + " has been dropped.");
 			}
 			conn.commit();
 		} catch (Exception e) {
-			System.out.println(e);
+			//System.out.println(e);
 		}
 	}
 }

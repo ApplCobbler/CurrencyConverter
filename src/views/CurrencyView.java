@@ -4,7 +4,6 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
-import java.util.Date;
 import java.util.List;
 import java.math.*;
 
@@ -76,7 +75,6 @@ public class CurrencyView extends JFrame {
         	        	   try {
 							Database.disconnectDB();
 						} catch (SQLException e1) {
-							System.out.println("Error trying to shutdown DB on close.");
 							e1.printStackTrace();
 						}
         	        	
@@ -111,13 +109,13 @@ CurrencyList currencyList = new CurrencyList();
      this.setBorder(BorderFactory.createEmptyBorder(10,0,10,0));
 
      //set up first Panel for displaying on left
-     titleIcon = new JLabel(new ImageIcon(new ImageIcon("images/CC_Logo.jpg").getImage().getScaledInstance(100, 90, Image.SCALE_DEFAULT)));
+     titleIcon = new JLabel(new ImageIcon(new ImageIcon(Main.class.getResource("images/CC_Logo.jpg")).getImage().getScaledInstance(100, 90, Image.SCALE_DEFAULT)));
      title = new JLabel("<html><font size=8>Currency Converter</font></html>");
      titleFormat.add(titleIcon);
      titleFormat.add(title);
      titleFormat.setBackground(Color.white);
 
-     syncIcon = new JLabel(new ImageIcon("images/syncIcon.png"));
+     syncIcon = new JLabel(new ImageIcon(Main.class.getResource("images/syncIcon.png")));
      syncLabel = new JLabel("<html><font size=3>Last Synced: " + CurrencyList.getLastSyncDate(Database.today) + "</font></html> ");
      syncFormat.add(syncIcon);
      syncFormat.add(syncLabel);
@@ -197,7 +195,7 @@ class ControlPanel extends JPanel{
 
 
 
-          enterButton = new JButton(new ImageIcon("images/submitIcon.png"));
+          enterButton = new JButton(new ImageIcon(Main.class.getResource("images/submitIcon.png")));
           enterButton.setBorderPainted(false);
           enterButton.addActionListener( new ActionListener(){
                @Override
@@ -207,14 +205,11 @@ class ControlPanel extends JPanel{
                      
               if(inputParsed.equals(outputParsed) == false){
               
-                if (inputAmount.getText().isEmpty() == false){
-                	
+                if (inputAmount.getText().isEmpty() == false){     	
                      inputdouble = Double.parseDouble(inputAmount.getText());
-                     System.out.println("if found, amount = " + inputdouble);
                      currencyList.setConversionAmount(inputdouble);
 
                      try {
-                              //Database.connectDB();
                               addResultsDisplay();
                               addTable(); 
 
@@ -293,10 +288,10 @@ class ControlPanel extends JPanel{
         outputCountryFlagString = currencyList.getSelectedFlag(outputCurrencySelection.getSelectedIndex());
        
         JLabel inputAmountDisplay = new JLabel("<html><font size=8><p>" + inputdouble + "</p></font></html>");
-        JLabel inputCountryFlag = new JLabel(new ImageIcon(inputCountryFlagString));
+        JLabel inputCountryFlag = new JLabel(new ImageIcon(Main.class.getResource(inputCountryFlagString)));
         JLabel inputBaseDisplay = new JLabel("<html><font size=8><p>" + currencyList.getCurrencyKey(baseCurrencySelection.getSelectedIndex())+ "</p></font></html>");
         JLabel toDisplay = new JLabel("<html><font size=8><p>" + " to " + "</p></font></html>");
-        JLabel outputCountryFlag = new JLabel(new ImageIcon(outputCountryFlagString));
+        JLabel outputCountryFlag = new JLabel(new ImageIcon(Main.class.getResource(outputCountryFlagString)));
         JLabel outputBaseDisplay = new JLabel("<html><font size=8><p>" + currencyList.getCurrencyKey(outputCurrencySelection.getSelectedIndex()) + "</p></font></html>");
       
       
@@ -326,15 +321,14 @@ class HistoryTableModel extends AbstractTableModel{
     	 try {
 			Database.updateDBWithHistory(inputString, days);
 		} catch (Exception e1) {
-			System.out.println("failed to update history");
+
 			e1.printStackTrace();
 			
 		}
     	 
     	 try {
-        	 System.out.println("Input: " + inputString + ", Output: "+ outputString + ", Days: "+ days);
 			returnedRates = Database.historicRates(inputString, outputString, days);
-			System.out.println(returnedRates);
+		
 		} catch (Exception e) {
 			
 			e.printStackTrace();
@@ -483,7 +477,7 @@ class EmptyPanel extends JPanel{
                     + "or select ALL to compare with all supported currencies</p></font></html>");
 
           helpIconPanel.setBackground(Color.white);
-          helpIconPanel.add(new JLabel(new ImageIcon("images/helpIcon.png")), BorderLayout.NORTH);
+          helpIconPanel.add(new JLabel(new ImageIcon(Main.class.getResource("images/helpIcon.png"))), BorderLayout.NORTH);
 
           helpTextPanel.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
           helpTextPanel.setBackground(Color.white);

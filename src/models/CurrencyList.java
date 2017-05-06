@@ -100,12 +100,11 @@ public class CurrencyList {
 	}
 	
 	public String[] getCurrencyInfoList(){
-		//System.out.println(infoArray.length);
 		return infoArray;
 	}
 	
 	public String[] getCurrencyInfo(int input){
-		//System.out.println(infoArray.length);
+
 		return currencyInfo[input];
 	}
  
