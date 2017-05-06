@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Fri May 05 19:04:30 EDT 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-015b-dadb-81bc-0000069478b0 
+Fri May 05 22:59:52 EDT 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-015b-dbb2-fd77-000006947b00 
 on database directory /Users/richardwainwright/Documents/workspace/Currency Converter/IC2ADB with class loader sun.misc.Launcher$AppClassLoader@2a139a55 
 Loaded from file:/Users/richardwainwright/Documents/workspace/Currency%20Converter/libs/derby.jar
 java.vendor=Oracle Corporation
@@ -12,8 +12,8 @@ os.version=10.12.5
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Fri May 05 19:05:01 EDT 2017: Shutting down Derby engine
+Fri May 05 22:59:58 EDT 2017: Shutting down Derby engine
 ----------------------------------------------------------------
-Fri May 05 19:05:01 EDT 2017:
-Shutting down instance a816c00e-015b-dadb-81bc-0000069478b0 on database directory /Users/richardwainwright/Documents/workspace/Currency Converter/IC2ADB with class loader sun.misc.Launcher$AppClassLoader@2a139a55 
+Fri May 05 22:59:58 EDT 2017:
+Shutting down instance a816c00e-015b-dbb2-fd77-000006947b00 on database directory /Users/richardwainwright/Documents/workspace/Currency Converter/IC2ADB with class loader sun.misc.Launcher$AppClassLoader@2a139a55 
 ----------------------------------------------------------------
