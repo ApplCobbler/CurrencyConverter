@@ -47,7 +47,8 @@ class LoadingFrame extends JFrame {
          setSize(WIDTH, HEIGHT);
          setLayout(new BorderLayout());
          
-         JLabel loadingImage = new JLabel(new ImageIcon(new ImageIcon("images/CC_Logo.jpg").getImage().getScaledInstance
+
+         JLabel loadingImage = new JLabel(new ImageIcon(new ImageIcon(Main.class.getResource("/CC_Logo.jpg")).getImage().getScaledInstance
        		  (250, 225, Image.SCALE_DEFAULT)));
 
          JLabel creditsLabel = new JLabel("<html><font size=3><p>" + 
