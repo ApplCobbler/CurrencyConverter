@@ -1,19 +1,19 @@
 ----------------------------------------------------------------
-Tue Apr 25 17:25:39 PDT 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-015b-a7a6-3576-000006d4de00 
-on database directory C:\Users\kjiko\git\CurrencyConverter\IC2ADB with class loader sun.misc.Launcher$AppClassLoader@73d16e93 
-Loaded from file:/C:/Users/kjiko/git/CurrencyConverter/libs/derby.jar
+Fri May 05 22:59:52 EDT 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-015b-dbb2-fd77-000006947b00 
+on database directory /Users/richardwainwright/Documents/workspace/Currency Converter/IC2ADB with class loader sun.misc.Launcher$AppClassLoader@2a139a55 
+Loaded from file:/Users/richardwainwright/Documents/workspace/Currency%20Converter/libs/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_131-b11
-user.dir=C:\Users\kjiko\git\CurrencyConverter
-os.name=Windows 10
-os.arch=amd64
-os.version=10.0
+java.runtime.version=1.8.0_91-b14
+user.dir=/Users/richardwainwright/Documents/workspace/Currency Converter
+os.name=Mac OS X
+os.arch=x86_64
+os.version=10.12.5
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Tue Apr 25 17:25:39 PDT 2017: Shutting down Derby engine
+Fri May 05 22:59:58 EDT 2017: Shutting down Derby engine
 ----------------------------------------------------------------
-Tue Apr 25 17:25:39 PDT 2017:
-Shutting down instance a816c00e-015b-a7a6-3576-000006d4de00 on database directory C:\Users\kjiko\git\CurrencyConverter\IC2ADB with class loader sun.misc.Launcher$AppClassLoader@73d16e93 
+Fri May 05 22:59:58 EDT 2017:
+Shutting down instance a816c00e-015b-dbb2-fd77-000006947b00 on database directory /Users/richardwainwright/Documents/workspace/Currency Converter/IC2ADB with class loader sun.misc.Launcher$AppClassLoader@2a139a55 
 ----------------------------------------------------------------

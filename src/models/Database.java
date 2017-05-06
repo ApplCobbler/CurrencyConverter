@@ -2,104 +2,29 @@ package models;
 
 
 import java.io.*;
-
 import java.sql.*;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
+
 import org.json.JSONObject;
 //import org.json.simple.JSONObject;
 //import org.json.simple.parser.JSONParser;
-
-/**
-<<<<<<< HEAD
- * @author richardwainwright
+/*
+ * @author Jik Oh
+ * Edits by: Richard Wainwright
  *
  *         This section will be where Jik primarily works out of
  *
-<<<<<<< HEAD
  *         We will need the code for instantiating the DB. I have no problem
  *         with whatever implementation we go with, but I'll be working heavily
  *         with other classes that will interact with the DD.
-=======
- *This is a testing line. 
- *
- *We will need the code for instantiating the DB. I have no problem with whatever implementation we go 
- *with, but I'll be working heavily with other classes that will interact with the DD.
->>>>>>> refs/remotes/origin/master
- *
- *         I have included some basic boilerplate code that I cannot confirm is
- *         any good but hopefully points us in the right direction. I also added
- *         a sql file to the project in the event that you'd prefer to work
- *         using sql scripts and a sql db instead of the java native version.
- *
- *         Java Database boilerplate code provided from:
- *         https://www.tutorialspoint.com/jdbc/jdbc-create-database.htm
- *
- *
- *
- *         The Last try to sync things up.
- *
- *         Comment
- */
-public class Database {
-
-	// JDBC driver name and database URL
-	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://localhost/";
-
-	// Database credentials
-	static final String USER = "username";
-	static final String PASS = "password";
-
-	public static void main(String[] args) {
-		Connection conn = null;
-		Statement stmt = null;
-		try {
-			// STEP 2: Register JDBC driver
-			Class.forName("com.mysql.jdbc.Driver");
-
-			// STEP 3: Open a connection
-			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-			// STEP 4: Execute a query
-			System.out.println("Creating database...");
-			stmt = conn.createStatement();
-
-			String sql = "CREATE DATABASE STUDENTS";
-			stmt.executeUpdate(sql);
-			System.out.println("Database created successfully...");
-		} catch (SQLException se) {
-			// Handle errors for JDBC
-			se.printStackTrace();
-		} catch (Exception e) {
-			// Handle errors for Class.forName
-			e.printStackTrace();
-		} finally {
-			// finally block used to close resources
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (SQLException se2) {
-			} // nothing we can do
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (SQLException se) {
-				se.printStackTrace();
-			} // end finally try
-		} // end try
-		System.out.println("Goodbye!");
-	}// end main
-
- /* @@Comment from JIK If you want to test this class, you have to copy Derby.jar
- *           to your library and set class path. If you can improve the codes
  *           below, please feel free to correct and inform me.
  *
  */
 public class Database {
+
 
 	// 1. Class Variables
 
@@ -127,9 +52,11 @@ public class Database {
 	// rates array
 	private static String rates_list;
 	// currency list
-	private static final List<String> list = Arrays.asList("AUD", "BGN", "BRL", "CAD", "CHF", "CNY", "CZK", "DKK",
-			"EUR", "GBP", "HKD", "HRK", "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP",
-			"PLN", "RON", "RUB", "SEK", "SGD", "THB", "TRY", "USD", "ZAR");
+	private static final List<String> list = Arrays.asList(
+			"AUD", "BGN", "BRL", "CAD", "CHF", "CNY", "CZK", "DKK",
+			"EUR", "GBP", "HKD", "HRK", "HUF", "IDR", "ILS", "INR", 
+			"JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PLN", 
+			"RON", "RUB", "SEK", "SGD", "THB", "TRY", "USD", "ZAR");
 	// Contain currencies and rates for query purpose (Expandable arrays)
 	private static List<String> c_query = new ArrayList<>(Arrays.asList());
 	private static List<Double> r_query = new ArrayList<>(Arrays.asList());
@@ -153,7 +80,7 @@ public class Database {
 				Database.createTable();
 			}
 		} catch (Exception e) {
-			System.out.println("Connection cannot be made: " + e);
+			//System.out.println("Connection cannot be made: " + e);
 		}
 	}
 
@@ -172,10 +99,10 @@ public class Database {
 			if (conn != null) {
 				conn.close();
 			}
-			System.out.println("Database disconnected.");
+			//System.out.println("Database disconnected.");
 			DriverManager.getConnection(SD_URL);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
 		}
 	}
 
@@ -187,12 +114,12 @@ public class Database {
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("select * from USD");
-			System.out.println("Tables already exists.");
+			//System.out.println("Tables already exists.");
 			conn.commit();
 			return true;
 		} // If there is no MAIN table, returns false
 		catch (SQLException ex) {
-			System.out.println("Table doesn't exist. Creating tables...");
+			//System.out.println("Table doesn't exist. Creating tables...");
 			return false;
 		}
 	}
@@ -219,14 +146,12 @@ public class Database {
 				table.append(")");
 				// Change to a string
 				tableSQL = table.toString();
-				System.out.println(tableSQL);
 				stmt.execute(tableSQL);
-				System.out.println("Table " + list.get(i) + " was created.");
 				table.delete(0, table.length());
 			}
 			conn.commit();
 		} catch (Exception e) {
-			System.out.println(e);
+			//System.out.println(e);
 		}
 	}
 
@@ -237,13 +162,12 @@ public class Database {
 
 	// Set a formatted date and base
 	private static void setDateBase(Date sdate, String sbase) {
+
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		date = df.format(sdate);
 		base = sbase;
 	}
 
-	// Reads the content of the URL based on Date and base currency and return
-	// as string.
 	private static String readURL() throws Exception {
 		String urlString = ("http://api.fixer.io/" + date + "?base=" + base);
 		URL url = new URL(urlString);
@@ -295,24 +219,74 @@ public class Database {
 
 	// Update rates of all currencies based on a date
 	public static void updateDB(Date udate) throws Exception {
-		try {
-			for (int i = 0; i < 32; i++) {
+		
+		for (int i = 0; i < 32; i++) {
+			try {	
 				setDateBase(udate, list.get(i));
 				createLists();
 				pstmt = conn
-						.prepareStatement("insert into " + list.get(i) + " " + currency_list + " values" + rates_list);
+					.prepareStatement("insert into " + list.get(i) + " " + currency_list + " values" + rates_list);
 				pstmt.execute();
 				System.out.println("Updated table " + list.get(i) + " from the web on " + date + ".");
+		
+		conn.commit();
+		}catch (Exception e) {
+	//	System.out.println("Data for " + date + " already exist.");
+		conn.commit();
+	}
+
+	}
+}
+	//Update a specific Table with historic values
+	public static void updateDBWithHistory(String hbase, int x) throws Exception {
+		
+		for (int i = 0; i < x; i++){
+			Date newDate = subtractDays(today, i);
+			try {	
+				setDateBase(newDate, hbase);
+				createLists();
+				pstmt = conn
+					.prepareStatement("insert into " + hbase + " " + currency_list + " values" + rates_list);
+				pstmt.execute();
+				//System.out.println("Updated table " + hbase + " from the web on " + date + ".");
+		
+		conn.commit();
+		}catch (Exception e) {
+		//System.out.println("Updated On The Fly Data for " + date + " already exist or failed.");
+		conn.commit();
+	}
+
+	}
+}
+	
+	
+	
+	
+	//Method to subtract days 
+	public static Date subtractDays(Date sdate, int days) {
+		GregorianCalendar cal = new GregorianCalendar();
+		cal.setTime(sdate);
+		cal.add(Calendar.DATE, -days);
+		return cal.getTime();
+		
+	}
+	
+	// Update rates from the web for the last x days
+	public static void updateDB(Date udate, int x) throws Exception {
+		try {
+			for (int i = 0; i < x; i++) {
+				Date newDate = subtractDays(udate, i);
+	
+				updateDB(newDate);	
 			}
-			conn.commit();
 		}
-		// If data already exists, then print out the warning message.
-		catch (Exception e) {
-			System.out.println("Data for " + date + " already exist.");
-			conn.commit();
+		catch (Exception e){
+			System.out.println(e);
 		}
 	}
 
+	
+	
 	
 	
 	// 5. Query
@@ -341,11 +315,22 @@ public class Database {
 					r_query.add(rs.getDouble(z + 1));
 				}
 			}
+			
 			conn.commit();
 		} catch (Exception e) {
 			System.out.println(e);
 			conn.commit();
 		}
+	}
+
+	// Query rates for last x days of base currency against the target currency
+	public static List<Double> historicRates(String hbase, String tbase, int x) throws Exception {
+		r_query.clear();
+		for (int i = 0; i < x; i++){
+			Date newDate = subtractDays(today, i);
+			r_query.add(getOneRate(hbase, tbase, newDate));
+		}
+		return r_query;
 	}
 	
 	// Return a String list of currencies for one base currency (used with
@@ -364,20 +349,21 @@ public class Database {
 	// date
 	public static double getOneRate(String gbase, String target, Date gdate) throws SQLException {
 		Double rate = null;
+		
 		try {
 			setDateBase(gdate, gbase);
 			rs = stmt.executeQuery("select " + target + " from " + base + " where date = '" + date + "'");
 			conn.commit();
-			while (rs.next()) {
-
+			while (rs.next()) {		
 				rate = rs.getDouble(1);
 			}
 			conn.commit();
 		} catch (Exception e) {
 
-			System.out.println(e);
+			//System.out.println(e);
 			conn.commit();
 		}
+		
 		return rate;
 	}
 
@@ -391,14 +377,13 @@ public class Database {
 
 				String dropTB = ("drop table " + list.get(i));
 
-
 				stmt = conn.createStatement();
 				stmt.execute(dropTB);
-				System.out.println("Table " + list.get(i) + " has been dropped.");
+			//	System.out.println("Table " + list.get(i) + " has been dropped.");
 			}
 			conn.commit();
 		} catch (Exception e) {
-			System.out.println(e);
+			//System.out.println(e);
 		}
 	}
 }}
