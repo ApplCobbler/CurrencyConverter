@@ -111,7 +111,7 @@ CurrencyList currencyList = new CurrencyList();
      this.setBorder(BorderFactory.createEmptyBorder(10,0,10,0));
 
      //set up first Panel for displaying on left
-     titleIcon = new JLabel(new ImageIcon("images/CC_Logo.jpg"));
+     titleIcon = new JLabel(new ImageIcon(new ImageIcon("images/CC_Logo.jpg").getImage().getScaledInstance(100, 90, Image.SCALE_DEFAULT)));
      title = new JLabel("<html><font size=8>Currency Converter</font></html>");
      titleFormat.add(titleIcon);
      titleFormat.add(title);
