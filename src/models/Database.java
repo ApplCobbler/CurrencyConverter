@@ -20,10 +20,6 @@ import org.json.JSONObject;
  *         We will need the code for instantiating the DB. I have no problem
  *         with whatever implementation we go with, but I'll be working heavily
  *         with other classes that will interact with the DD.
-
-
- * @@Comment from JIK If you want to test this class, you have to copy Derby.jar
- *           to your library and set classpath. If you can improve the codes
  *           below, please feel free to correct and inform me.
  *
  */
@@ -390,4 +386,4 @@ public class Database {
 			//System.out.println(e);
 		}
 	}
-}
+}}

@@ -11,15 +11,15 @@ import javax.swing.JPanel;
 import models.CurrencyList;
 import models.Database;
 
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
+
 /**
  * CMSC 495 - Spring 2017 Professor Dao Group 2: Richard Wainwright, Dennie
  * Carr, Greg Armstrong, Jik Oh
  *
  */
-public class Main {
-
-
-	public static void main(String[] args) throws Exception {
+public class Main extends IC2A{
 
 		// Run this baby
 		
